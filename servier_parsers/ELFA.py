@@ -58,7 +58,7 @@ def parse(file, caminho_completo, output_path, engine):
                         df2['INSTITUIÇÃO'] = df.apply(lambda row: row['Razao Social Cliente'] if pd.notna(row['Razao Social Cliente']) and str(row['Razao Social Cliente']).strip() != '' else row['Grupo Cliente'],axis=1)
                         df2.insert(0,'DISTRIBUIDOR','ELFA')
                         df2.insert(1,'DATA',df['Data Emissao'].dt.strftime('%m/%d/%Y'))
-                        df2['CNPJ'] = df['CNPJ2'].astype('str').str.zfill(14)
+                        df2['CNPJ'] = df['CNPJ2'].astype('str').str.zfill(14).str[:-2]
                         df2['EAN'] = df['Codigo Barras'].astype('str').str.zfill(13)
                         df2['CIDADE'] = df['Municipio']
                         df2['UF'] = df['UF Cliente']

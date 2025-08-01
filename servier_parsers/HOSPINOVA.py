@@ -58,7 +58,7 @@ def parse(file, caminho_completo, output_path, engine):
                         df2['INSTITUIÇÃO'] = df['Razão Social']
                         df2.insert(0,'DISTRIBUIDOR','HOSPINOVA')
                         df2.insert(1,'DATA',df['Data'].dt.strftime('%m/%d/%Y'))
-                        df2['CNPJ'] = df['CNPJ'].astype('str').sub(r'\D', '')
+                        df2['CNPJ'] = df['CNPJ'].astype(str).str.replace(r'\D', '', regex=True).str.zfill(14)
                         df2['EAN'] = df['EAN'].astype('str').str.zfill(13)
                         df2['CIDADE'] = df['Cidade'].str.upper()
                         df2['UF'] = df['Estado']
